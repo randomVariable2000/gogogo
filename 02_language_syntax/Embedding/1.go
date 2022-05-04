@@ -8,8 +8,8 @@ type user struct {
 }
 
 type admin struct {
-	person user // NOT Embedding
-	level  string
+	user  // embedding
+	level string
 }
 
 func (u *user) notify() {
@@ -18,8 +18,10 @@ func (u *user) notify() {
 
 func main() {
 	ad := admin{
-		person: user{age: 11, name: "john smith"},
-		level:  "slow",
+		user:  user{age: 11, name: "john smith"},
+		level: "slow",
 	}
-	ad.person.notify()
+	ad.notify()
+	// the same
+	ad.user.notify()
 }
